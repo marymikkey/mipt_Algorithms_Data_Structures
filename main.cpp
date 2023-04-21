@@ -7,7 +7,8 @@
 #include "mheap.h"
 #include "merge_sort.h"
 #include "quick_sort.h"
-
+#include "counting_sort.h"
+#include "trees.h"
 
 template <class T>
 inline std::ostream & operator << (std::ostream & o, const std::vector<T> & mvect){
@@ -436,6 +437,58 @@ void test_quick_sort(){
         return (last+first)/2;})<<std::endl;
 }
 
+void test_counting_sort() {
+    std::vector<int> a{ 0, 1, 0, 4, 8, 7, 9, 5, 3, 2, 1, 1, 1, 3 };
+    counting_sort<10>(a);
+    std::cout << a << std::endl;
+    std::vector<int> a2{ 0, 2, 0, 1, 2, 0, 1 };
+    counting_sort<3>(a2);
+    std::cout << a2 << std::endl;
+    std::vector<int> a3{ 0, 1, 0, 4, 8, 7, 9, 5, 3, 2, 1, 1, 1, 3 };
+    pocket_sort<10>(a3);
+    std::cout << a3 << std::endl;
+    std::vector<int> a4{ 0, 2, 0, 1, 2, 0, 1 };
+    pocket_sort<3>(a4);
+    std::cout << a4 << std::endl;
+    std::vector<unsigned long long> a5{ 0, 1, 0, 4, 8, 7, 9,76745466865, 5, 3, 2, 1, 1, 1, 3, 89977768 };
+    LSD(a5);
+    std::cout << a5 << std::endl;
+    std::vector<unsigned long long> a6{ 8686578, 0, 2, 0, 1, 2, 0, 1, 4556576008 };
+    LSD(a6);
+    std::cout << a6 << std::endl;
+    std::vector<unsigned long long> a7{ 0, 1, 0, 4, 8, 7, 9,76745466865, 5, 3, 2, 1, 1, 1, 3, 89977768 };
+    MSD(a7);
+    std::cout << a7 << std::endl;
+    std::vector<unsigned long long> a8{ 8686578, 0, 2, 0, 1, 2, 0, 1, 4556576008 };
+    MSD(a8);
+    std::cout << a8 << std::endl;
+    std::vector<unsigned short> a9{0x1F0A, 0x0F03, 0x0A02, 0x0A01, 0x1F01  };
+    MSD(a9);
+    std::cout << a9 << std::endl;
+}
+
+void test_bin_search_tree()
+{
+    bin_search_tree t;
+    t.insert(50);
+    t.insert(52);
+    t.insert(9);
+    std::cout << t.contains(11) << std::endl;
+    std::cout << t.contains(9) << std::endl;
+    std::cout << t.contains(52) << std::endl;
+    bin_search_tree t2;
+    t2.insert(50);
+    t2.remove(50);
+    t2.insert(50);
+    t2.insert(52);
+    t2.insert(9);
+    t2.insert(-1);
+    t2.insert(15);
+    t2.insert(16);
+    t2.insert(10);
+    t2.insert(11);
+    t2.remove(9);
+}
 
 int main(){
     //std::vector<int>::value_type x;
@@ -447,6 +500,8 @@ int main(){
     //test_heap();
     //test_priorety_queue();
     //test_merge_sort();
-    test_quick_sort();
+    ///test_quick_sort();
+    //test_counting_sort();
+    test_bin_search_tree();
     return 0;
 }
